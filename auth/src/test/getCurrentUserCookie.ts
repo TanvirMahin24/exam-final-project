@@ -11,7 +11,7 @@ export const getCurrentUserCookie = async () => {
       email,
       password,
     })
-    .expect(201);
+    .expect(202);
 
   const cookie = response.get("Set-Cookie");
 
