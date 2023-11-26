@@ -12,6 +12,7 @@ export const getCurrentUserCookie = async () => {
       password,
     })
     .expect(201);
+  console.log("Test for signup");
 
   const cookie = response.get("Set-Cookie");
 
