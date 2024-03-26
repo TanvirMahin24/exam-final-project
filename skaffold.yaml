@@ -4,14 +4,17 @@ build:
   artifacts:
   - image: tanvirmahin24/auth
     context: auth
-  - image: tanvirmahin24/tkt-client
-    context: client
+  - image: tanvirmahin24/exam
+    context: exam
+  # - image: tanvirmahin24/tkt-client
+  #   context: client
 deploy:
   kubectl:
     manifests:
     - infra/k8s/auth-depl.yaml
+    - infra/k8s/exam-depl.yaml
     - infra/k8s/auth-mongo-depl.yaml
-    - infra/k8s/client-depl.yaml
+    # - infra/k8s/client-depl.yaml
     - infra/k8s/nats-depl.yaml
     - infra/k8s/ingress-srv.yaml
     

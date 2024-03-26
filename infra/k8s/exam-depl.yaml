@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exam-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exam
+  template:
+    metadata:
+      labels:
+        app: exam
+    spec:
+      containers:
+        - name: exam
+          image: tanvirmahin24/exam
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/exam'
+            - name: JWT_KEY
+              valueFrom: 
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: exam-srv
+spec:
+  selector:
+    app: exam
+  ports:
+    - name: exam
+      protocol: TCP
+      port: 5001
+      targetPort: 5001

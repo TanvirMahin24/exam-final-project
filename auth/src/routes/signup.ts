@@ -10,6 +10,9 @@ router.post(
   "/api/users/signup",
   [
     body("email").isEmail().withMessage("Enter a valid email address!"),
+    body("name").isString().withMessage("Enter a valid name!"),
+    body("bio").isString().withMessage("Enter a valid bio!"),
+    body("institution").isString().withMessage("Enter a valid institution!"),
     body("password")
       .trim()
       .isLength({ min: 4, max: 20 })
@@ -20,7 +23,7 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     // Request body data
-    const { email, password } = req.body;
+    const { email, password, bio, institution, name } = req.body;
 
     // Check user with email exists
     const userExist = await User.findOne({ email });
@@ -31,7 +34,14 @@ router.post(
     }
 
     // If User with email does not exists
-    const user = User.build({ email, password });
+    const user = User.build({
+      email,
+      password,
+      bio,
+      institution,
+      name,
+      role: "user",
+    });
     await user.save();
 
     // Create JWT

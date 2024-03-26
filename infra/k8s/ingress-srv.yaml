@@ -18,6 +18,13 @@ spec:
             name: auth-srv
             port: 
               number: 5001
+      - path: /api/exam/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: exam-srv
+            port: 
+              number: 5001
       
       - path: /?(.*)
         pathType: Prefix

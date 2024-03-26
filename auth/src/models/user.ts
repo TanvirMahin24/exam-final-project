@@ -4,7 +4,11 @@ import { Password } from "../utils/password";
 // Create user attribute interface
 interface UserAttr {
   email: string;
+  name: string;
+  bio: string;
+  institution: string;
   password: string;
+  role: string;
 }
 
 // Build function interface
@@ -15,7 +19,11 @@ interface UserModel extends mongoose.Model<UserDoc> {
 // User document inteface
 interface UserDoc extends mongoose.Document {
   email: string;
+  name: string;
+  bio: string;
+  institution: string;
   password: string;
+  role: string;
 }
 
 const userSchema = new mongoose.Schema(
@@ -23,6 +31,23 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+    },
+    name: {
+      type: String,
+      required: false,
+    },
+    bio: {
+      type: String,
+      required: false,
+    },
+    institution: {
+      type: String,
+      required: false,
+    },
+    role: {
+      type: String,
+      default: "user",
+      required: false,
     },
     password: {
       type: String,
