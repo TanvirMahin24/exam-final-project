@@ -44,15 +44,18 @@ router.post(
 
     // Create JWT
     const userJwt = jwt.sign(
-      { id: existingUser.id, email: existingUser.email },
+      {
+        id: existingUser.id,
+        email: existingUser.email,
+        bio: existingUser.bio,
+        institution: existingUser.institution,
+        name: existingUser.name,
+      },
       process.env.JWT_KEY!
     );
 
-    // Set te token into session
-    req.session = { jwt: userJwt };
-
     // Send success response
-    return res.status(200).send(existingUser);
+    return res.status(200).json({ data: userJwt });
   }
 );
 

@@ -1,13 +1,9 @@
 import express, { Request, Response } from "express";
 const router = express.Router();
-import { currentUser } from "@inovit-bd/ms-common";
+import { isAuth } from "../utils/authMiddleware";
 
-router.get(
-  "/api/users/currentuser",
-  currentUser,
-  (req: Request, res: Response) => {
-    res.send({ currentUser: req.currentUser || null });
-  }
-);
+router.get("/api/users/currentuser", isAuth, (req: Request, res: Response) => {
+  return res.json({ data: req.currentUser || null });
+});
 
 export { router as currentuserRouter };

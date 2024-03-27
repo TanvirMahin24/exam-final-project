@@ -11,15 +11,19 @@ import { errorHandler, NotFoundError } from "@inovit-bd/ms-common";
 var cors = require("cors");
 
 const app = express();
-app.use(cors());
-app.set("trust proxy", true);
-app.use(json());
 app.use(
-  cookieSession({
-    signed: false,
-    secure: process.env.NODE_ENV !== "test",
+  cors({
+    origin: "*",
   })
 );
+// app.set("trust proxy", true);
+app.use(json());
+// app.use(
+//   cookieSession({
+//     signed: false,
+//     secure: process.env.NODE_ENV !== "test",
+//   })
+// );
 
 app.use(currentuserRouter);
 app.use(signinRouter);
