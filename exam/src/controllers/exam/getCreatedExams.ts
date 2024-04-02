@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Exam, Question } from "../../models/exam";
 
-export const createExam = async (req: Request, res: Response) => {
+export const getCreatedExams = async (req: Request, res: Response) => {
   try {
     const exams = await Exam.find({ user: req.currentUser?.id })
       .sort({
@@ -11,10 +11,6 @@ export const createExam = async (req: Request, res: Response) => {
         {
           path: "user",
           model: "User",
-        },
-        {
-          path: "questions",
-          model: "Question",
         },
       ]);
     return res.status(200).json({ data: exams });

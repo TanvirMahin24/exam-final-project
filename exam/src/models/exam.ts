@@ -30,6 +30,7 @@ interface ExamAttr {
   duration: number;
   totalQuestions: number;
   start: string;
+  code: string;
   end: string;
   user: TUser;
   questions: TQuestion[];
@@ -50,8 +51,10 @@ interface ExamDoc extends mongoose.Document {
   duration: number;
   totalQuestions: number;
   start: string;
+  code: string;
   end: string;
   user: TUser;
+  students: TUser[];
   questions: TQuestion[];
   submissions: TAnswer[];
 }
@@ -63,10 +66,11 @@ const UserSchema: Schema = new Schema(
     email: { type: String, required: true },
     bio: { type: String, required: false },
     institution: { type: String, required: false },
+    exams: [{ type: Schema.Types.ObjectId, ref: "Exam" }],
   },
   {
     toJSON: {
-      transform(doc, ret) {
+      transform(doc, ret: any) {
         ret.id = ret._id;
         delete ret.__v;
       },
@@ -79,10 +83,11 @@ const QuestionSchema: Schema = new Schema(
     question: { type: String, required: true },
     options: [{ type: String }],
     answer: { type: String, required: false },
+    exam: { type: Schema.Types.ObjectId, ref: "Exam" },
   },
   {
     toJSON: {
-      transform(doc, ret) {
+      transform(doc, ret: any) {
         ret.id = ret._id;
         delete ret.__v;
       },
@@ -97,10 +102,11 @@ const AnswerSchema: Schema = new Schema(
     answer: { type: String, required: false },
     selected: { type: String, required: false },
     user: { type: Schema.Types.ObjectId, ref: "User" },
+    exam: { type: Schema.Types.ObjectId, ref: "Exam" },
   },
   {
     toJSON: {
-      transform(doc, ret) {
+      transform(doc, ret: any) {
         ret.id = ret._id;
         delete ret.__v;
       },
@@ -116,6 +122,10 @@ const examSchema = new mongoose.Schema(
       required: true,
     },
     description: {
+      type: String,
+      required: false,
+    },
+    code: {
       type: String,
       required: false,
     },
@@ -145,14 +155,14 @@ const examSchema = new mongoose.Schema(
       required: false,
     },
     user: { type: Schema.Types.ObjectId, ref: "User" },
+    students: [{ type: Schema.Types.ObjectId, ref: "User" }],
     questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
     submissions: [{ type: Schema.Types.ObjectId, ref: "Submission" }],
   },
   {
     toJSON: {
-      transform(doc, ret) {
+      transform(doc, ret: any) {
         ret.id = ret._id;
-        delete ret.password;
         delete ret.__v;
       },
     },

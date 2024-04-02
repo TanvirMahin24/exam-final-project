@@ -1,22 +1,18 @@
-import express from "express";
 import { json } from "body-parser";
-import cookieSession from "cookie-session";
+import express from "express";
 
-import "express-async-errors";
 import { errorHandler, NotFoundError } from "@inovit-bd/ms-common";
+import "express-async-errors";
 import { examRouter } from "./routes/exam";
 var cors = require("cors");
 
 const app = express();
-app.use(cors());
-app.set("trust proxy", true);
-app.use(json());
 app.use(
-  cookieSession({
-    signed: false,
-    secure: process.env.NODE_ENV !== "test",
+  cors({
+    origin: "*",
   })
 );
+app.use(json());
 
 app.use(examRouter);
 

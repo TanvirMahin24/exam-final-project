@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 import { isAuth } from "../utils/authMiddleware";
 import { User } from "../models/user";
+import { BadRequestError } from "@inovit-bd/ms-common";
 
 router.get(
   "/api/users/currentuser",
@@ -13,13 +14,12 @@ router.get(
       if (user) {
         return res.status(200).json({ data: user });
       } else {
-        return res.status(404).json({ message: "User not found" });
+        throw new BadRequestError("User not found");
       }
     } catch (error: any) {
       console.log(error);
-      return res.status(500).json({ message: error.message });
+      throw new BadRequestError(error.message);
     }
-    return res.json({ data: req.currentUser || null });
   }
 );
 

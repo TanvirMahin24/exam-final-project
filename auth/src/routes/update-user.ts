@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 import { isAuth } from "../utils/authMiddleware";
 import { User } from "../models/user";
+import { BadRequestError } from "@inovit-bd/ms-common";
 
 router.patch(
   "/api/users/update",
@@ -17,11 +18,11 @@ router.patch(
         );
         return res.status(200).json({ data: updatedUser });
       } else {
-        return res.status(404).json({ message: "User not found" });
+        throw new BadRequestError("User not found");
       }
     } catch (error: any) {
       console.log(error);
-      return res.status(500).json({ message: error.message });
+      throw new BadRequestError(error.message);
     }
   }
 );

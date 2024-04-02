@@ -38,6 +38,7 @@ export const createExam = async (req: Request, res: Response) => {
       end: new Date(new Date(start).getTime() + parseInt(duration) * 60000),
       questions: questionIds,
       submissions: [],
+      code: `${new Date().getTime()}`,
     });
     const exam = await newExam.save();
     // Send success response
