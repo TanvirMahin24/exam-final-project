@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exam-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exam-mongo
+  template:
+    metadata:
+      labels:
+        app: exam-mongo
+    spec:
+      containers:
+        - name: exam-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: exam-mongo-srv
+spec:
+  selector:
+    app: exam-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

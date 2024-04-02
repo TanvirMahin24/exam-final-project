@@ -16,8 +16,16 @@ spec:
         - name: exam
           image: tanvirmahin24/exam
           env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: exam-nats
             - name: MONGO_URI
-              value: 'mongodb://auth-mongo-srv:27017/exam'
+              value: 'mongodb://exam-mongo-srv:27017/exam'
             - name: JWT_KEY
               valueFrom: 
                 secretKeyRef:

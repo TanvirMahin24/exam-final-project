@@ -6,6 +6,7 @@ import { isAuth } from "../utils/authMiddleWare";
 import { getCreatedExams } from "../controllers/exam/getCreatedExams";
 import { deleteExam } from "../controllers/exam/deleteExam";
 import { joinExam } from "../controllers/exam/joinExam";
+import { getData } from "../controllers/exam/getData";
 const router = express.Router();
 
 router.post(
@@ -27,6 +28,7 @@ router.post(
   createExam
 );
 
+router.get("/api/exam/data", isAuth, getData);
 router.get("/api/exam", isAuth, getCreatedExams);
 router.delete("/api/exam/:id", isAuth, deleteExam);
 

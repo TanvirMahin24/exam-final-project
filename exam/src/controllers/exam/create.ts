@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
-import { Exam, Question } from "../../models/exam";
+import { Exam, Question, User } from "../../models/exam";
+import { ExamCreatedPublisher } from "../../events/publishers/exam-created-publisher";
+import { natsWrapper } from "../../nats-wrapper";
+import { BadRequestError } from "@inovit-bd/ms-common";
 
 export const createExam = async (req: Request, res: Response) => {
   try {
@@ -41,11 +44,25 @@ export const createExam = async (req: Request, res: Response) => {
       code: `${new Date().getTime()}`,
     });
     const exam = await newExam.save();
+
+    const user = await User.findById(req.currentUser?.id);
+
+    // Publish an event saying that an order was created
+    new ExamCreatedPublisher(natsWrapper.client).publish({
+      id: exam.id,
+      end: exam.end,
+    });
+    if (user && !user.created.includes(exam.id)) {
+      user.created.push(exam._id);
+      await user.save();
+    } else {
+      throw new BadRequestError("Already created the exam");
+    }
     // Send success response
     return res.status(201).send({ data: exam });
   } catch (error) {
     console.error("Error:", error);
     // @ts-ignore
-    res.status(500).json({ error: error.message });
+    throw new BadRequestError(error.message);
   }
 };

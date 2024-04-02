@@ -27,7 +27,7 @@ spec:
           '2',
           '-SD',
           '-cid',
-          'ticketing'
+          'exam-nats'
         ]
 ---
 apiVersion: v1

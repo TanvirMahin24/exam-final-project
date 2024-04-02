@@ -1,10 +1,36 @@
 import mongoose, { Schema } from "mongoose";
 
 export interface TUser extends Document {
+  id: string;
   name: string;
   email: string;
   bio: string;
   institution: string;
+  created: ExamDoc[];
+  results: TResult[];
+  exams: ExamDoc[];
+}
+
+export type AnswerType = {
+  id: string | string;
+  question: string;
+  options: string[];
+  answer: string;
+  selected: string | null;
+};
+
+export interface TResult extends Document {
+  id: string;
+  examId: number;
+  title: string;
+  totalMark: number;
+  gainedMark: number;
+  duration: number;
+  submissionDuration: number;
+  totalQuestions: number;
+  correct: number;
+  wrong: number;
+  answers: AnswerType[];
 }
 
 export interface TQuestion extends Document {
@@ -18,7 +44,6 @@ export interface TAnswer extends Document {
   options: string[];
   answer: string;
   selected: string | null;
-  user: TUser;
 }
 
 // Create user attribute interface
@@ -34,6 +59,8 @@ interface ExamAttr {
   end: string;
   user: TUser;
   questions: TQuestion[];
+  results: TResult[];
+  students: TUser[];
   submissions: TAnswer[];
 }
 
@@ -57,6 +84,7 @@ interface ExamDoc extends mongoose.Document {
   students: TUser[];
   questions: TQuestion[];
   submissions: TAnswer[];
+  results: TAnswer[];
 }
 
 // User Schema
@@ -66,7 +94,9 @@ const UserSchema: Schema = new Schema(
     email: { type: String, required: true },
     bio: { type: String, required: false },
     institution: { type: String, required: false },
+    created: [{ type: Schema.Types.ObjectId, ref: "Exam" }],
     exams: [{ type: Schema.Types.ObjectId, ref: "Exam" }],
+    results: [{ type: Schema.Types.ObjectId, ref: "Result" }],
   },
   {
     toJSON: {
@@ -158,6 +188,7 @@ const examSchema = new mongoose.Schema(
     students: [{ type: Schema.Types.ObjectId, ref: "User" }],
     questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
     submissions: [{ type: Schema.Types.ObjectId, ref: "Submission" }],
+    results: [{ type: Schema.Types.ObjectId, ref: "Result" }],
   },
   {
     toJSON: {

@@ -14,6 +14,7 @@ deploy:
     - infra/k8s/auth-depl.yaml
     - infra/k8s/exam-depl.yaml
     - infra/k8s/auth-mongo-depl.yaml
+    - infra/k8s/exam-mongo-depl.yaml
     # - infra/k8s/client-depl.yaml
     - infra/k8s/nats-depl.yaml
     - infra/k8s/ingress-srv.yaml

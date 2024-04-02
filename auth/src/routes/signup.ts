@@ -4,6 +4,8 @@ import { BadRequestError } from "@inovit-bd/ms-common";
 import { User } from "../models/user";
 import jwt from "jsonwebtoken";
 import { validateRequest } from "@inovit-bd/ms-common";
+import { userCreatedPublisher } from "../events/user-created-publisher";
+import { natsWrapper } from "../nats-wrapper";
 const router = express.Router();
 
 router.post(
@@ -55,6 +57,15 @@ router.post(
       },
       process.env.JWT_KEY!
     );
+
+    // Publish an event saying that an order was created
+    new userCreatedPublisher(natsWrapper.client).publish({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      bio: user.bio,
+      institution: user.institution,
+    });
 
     // Set te token into session
     // Send success response
