@@ -42,6 +42,7 @@ export const createExam = async (req: Request, res: Response) => {
       questions: questionIds,
       submissions: [],
       code: `${new Date().getTime()}`,
+      status: "created",
     });
     const exam = await newExam.save();
 

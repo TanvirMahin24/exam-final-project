@@ -6,12 +6,16 @@ build:
     context: auth
   - image: tanvirmahin24/exam
     context: exam
+  - image: tanvirmahin24/tkt-expiration
+    context: expiration
   # - image: tanvirmahin24/tkt-client
   #   context: client
 deploy:
   kubectl:
     manifests:
     - infra/k8s/auth-depl.yaml
+    - infra/k8s/expiration-depl.yaml
+    - infra/k8s/expiration-redis-depl.yaml
     - infra/k8s/exam-depl.yaml
     - infra/k8s/auth-mongo-depl.yaml
     - infra/k8s/exam-mongo-depl.yaml

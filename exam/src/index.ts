@@ -3,6 +3,7 @@ import { app } from "./app";
 import { ExamCreatedPublisher } from "./events/publishers/exam-created-publisher";
 import { natsWrapper } from "./nats-wrapper";
 import { UserCreatedListener } from "./events/listeners/user-created-listener";
+import { ResultPublishedListener } from "./events/listeners/result-publish-listener";
 
 const start = async () => {
   // check if ENV does not exists or not
@@ -39,6 +40,7 @@ const start = async () => {
 
     // Event Listeners
     new UserCreatedListener(natsWrapper.client).listen();
+    new ResultPublishedListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
     console.log("[EXAM] MongoDB connected!");

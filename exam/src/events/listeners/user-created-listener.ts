@@ -21,9 +21,6 @@ export class UserCreatedListener extends Listener<Event> {
       institution,
     });
     await ticket.save();
-    console.log(":::::::::::::::::::: DATA EXAM:::::::::::::::");
-    console.log(ticket);
-    console.log(":::::::::::::::::::: DATA END :::::::::::::::");
 
     msg.ack();
   }

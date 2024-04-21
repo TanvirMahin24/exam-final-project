@@ -7,6 +7,10 @@ import { getCreatedExams } from "../controllers/exam/getCreatedExams";
 import { deleteExam } from "../controllers/exam/deleteExam";
 import { joinExam } from "../controllers/exam/joinExam";
 import { getData } from "../controllers/exam/getData";
+import { getExamDetails } from "../controllers/exam/getExamDetails";
+import { submitResult } from "../controllers/exam/submitResult";
+import { getResultDetails } from "../controllers/exam/getResultDetails";
+import { getResults } from "../controllers/exam/getResults";
 const router = express.Router();
 
 router.post(
@@ -27,8 +31,18 @@ router.post(
   validateRequest,
   createExam
 );
+router.post(
+  "/api/exam/:id",
+  [body("title").isString().withMessage("Enter a valid title!")],
+  isAuth,
+  validateRequest,
+  submitResult
+);
 
 router.get("/api/exam/data", isAuth, getData);
+router.get("/api/exam/:id", isAuth, getExamDetails);
+router.get("/api/exam/result/:id", isAuth, getResultDetails);
+router.get("/api/exam/results", isAuth, getResults);
 router.get("/api/exam", isAuth, getCreatedExams);
 router.delete("/api/exam/:id", isAuth, deleteExam);
 

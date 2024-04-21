@@ -22,6 +22,7 @@ export type AnswerType = {
 export interface TResult extends Document {
   id: string;
   examId: number;
+  userId: number;
   title: string;
   totalMark: number;
   gainedMark: number;
@@ -30,7 +31,7 @@ export interface TResult extends Document {
   totalQuestions: number;
   correct: number;
   wrong: number;
-  answers: AnswerType[];
+  questions: AnswerType[];
 }
 
 export interface TQuestion extends Document {
@@ -62,6 +63,7 @@ interface ExamAttr {
   results: TResult[];
   students: TUser[];
   submissions: TAnswer[];
+  status: string;
 }
 
 // Build function interface
@@ -83,8 +85,7 @@ interface ExamDoc extends mongoose.Document {
   user: TUser;
   students: TUser[];
   questions: TQuestion[];
-  submissions: TAnswer[];
-  results: TAnswer[];
+  results: TResult[];
 }
 
 // User Schema
@@ -96,7 +97,31 @@ const UserSchema: Schema = new Schema(
     institution: { type: String, required: false },
     created: [{ type: Schema.Types.ObjectId, ref: "Exam" }],
     exams: [{ type: Schema.Types.ObjectId, ref: "Exam" }],
-    results: [{ type: Schema.Types.ObjectId, ref: "Result" }],
+    results: [{ type: Schema.Types.ObjectId, ref: "Result", default: [] }],
+  },
+  {
+    toJSON: {
+      transform(doc, ret: any) {
+        ret.id = ret._id;
+        delete ret.__v;
+      },
+    },
+  }
+);
+// User Schema
+const resultSchema: Schema = new Schema(
+  {
+    examId: { type: Schema.Types.ObjectId, ref: "Exam" },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
+    title: { type: String, required: false },
+    totalMark: { type: Number, required: false },
+    gainedMark: { type: Number, required: false },
+    duration: { type: Number, required: false },
+    submissionDuration: { type: Number, required: false },
+    totalQuestions: { type: Number, required: false },
+    correct: { type: Number, required: false },
+    wrong: { type: Number, required: false },
+    questions: { type: Array, default: [] },
   },
   {
     toJSON: {
@@ -176,6 +201,10 @@ const examSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
+    status: {
+      type: String,
+      required: true,
+    },
     start: {
       type: Date,
       required: false,
@@ -187,7 +216,6 @@ const examSchema = new mongoose.Schema(
     user: { type: Schema.Types.ObjectId, ref: "User" },
     students: [{ type: Schema.Types.ObjectId, ref: "User" }],
     questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
-    submissions: [{ type: Schema.Types.ObjectId, ref: "Submission" }],
     results: [{ type: Schema.Types.ObjectId, ref: "Result" }],
   },
   {
@@ -207,7 +235,8 @@ examSchema.statics.build = (attr: ExamAttr) => {
 };
 
 const Exam = mongoose.model<ExamDoc, ExamModel>("Exam", examSchema);
+const Result = mongoose.model<ExamDoc, ExamModel>("Result", resultSchema);
 const User = mongoose.model<TUser>("User", UserSchema);
 const Question = mongoose.model<TQuestion>("Question", QuestionSchema);
 const Answer = mongoose.model<TAnswer>("Answer", AnswerSchema);
-export { Exam, User, Question, Answer };
+export { Exam, User, Question, Answer, Result };
