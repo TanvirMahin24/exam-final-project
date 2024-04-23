@@ -1,0 +1,39 @@
+.crd {
+  padding: 20px 10px;
+  border-radius: 10px;
+  background: #fff;
+  border-left: 4px solid var(--pink) !important;
+  box-shadow: var(--box-shadow-1);
+  transition: 0.3s all ease-in-out;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 24px;
+  color: var(--pink);
+  transition: 0.3s all ease-in-out;
+}
+
+.title {
+  font-size: 18px;
+}
+
+.count {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.link {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s all ease-in-out;
+}
+
+.link:hover {
+  color: var(--primary);
+  transition: 0.3s all ease-in-out;
+}

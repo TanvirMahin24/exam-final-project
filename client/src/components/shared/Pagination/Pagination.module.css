@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+
+  color: var(--white);
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.icon.active {
+  background: #00000052;
+  color: var(--white);
+  transition: 0.3s all ease-in-out;
+}
+
+.icon.active:hover {
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  background: var(--brand-light-blue-2);
+  color: var(--primary);
+}
+
+.text {
+  color: var(--white);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

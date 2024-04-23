@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+:root {
+  --black: #0b0d17;
+  --dark: #18191f;
+  --gray: #474a57;
+  --white: #ffffff;
+  --secondary: #474a57;
+  --light: #f4f5f7;
+  --brand-light-blue: #75e3ea;
+  --brand-light-blue-2: #d5fafc;
+  --primary: #197bbd;
+  --purple: #4e54c8;
+  --success: #33d649;
+  --pink: #d6336c;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+/* CUSTOM SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--brand-light-blue);
+  border-radius: 3px;
+  transition: 0.3s all ease-in-out;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  transition: 0.3s all ease-in-out;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+:root {
+  --black: #0b0d17;
+  --dark: #18191f;
+  --gray: #474a57;
+  --secondary: #474a57;
+  --light: #f4f5f7;
+  --brand-light-blue: #75e3ea;
+  --brand-light-blue-2: #d5fafc;
+  --primary: #197bbd;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.heading__1 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal !important;
+  font-weight: 800 !important;
+  font-size: 72px !important;
+  line-height: 98px !important;
+}
+
+.heading__2 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal !important;
+  font-weight: 800 !important;
+  font-size: 48px !important;
+  line-height: 64px !important;
+}
+
+.heading__3 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal !important;
+  font-weight: 800 !important;
+  font-size: 40px !important;
+  line-height: 54px !important;
+}
+
+.heading__4 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal !important;
+  font-weight: 800 !important;
+  font-size: 28px !important;
+  line-height: 40px !important;
+}
+
+.heading__5 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 24px !important;
+  line-height: 32px !important;
+}
+
+.heading__6 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 20px !important;
+  line-height: 30px !important;
+}
+
+.lead__1 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.lead__2 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.body__1 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.subtitle__1 {
+  font-family: "Manrope", "Segoe UI" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.form-control.error {
+  border: 2px solid #ff6565 !important;
+}

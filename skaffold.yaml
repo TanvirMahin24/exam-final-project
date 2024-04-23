@@ -8,8 +8,8 @@ build:
     context: exam
   - image: tanvirmahin24/tkt-expiration
     context: expiration
-  # - image: tanvirmahin24/tkt-client
-  #   context: client
+  - image: tanvirmahin24/exam-react
+    context: client
 deploy:
   kubectl:
     manifests:
@@ -19,7 +19,7 @@ deploy:
     - infra/k8s/exam-depl.yaml
     - infra/k8s/auth-mongo-depl.yaml
     - infra/k8s/exam-mongo-depl.yaml
-    # - infra/k8s/client-depl.yaml
+    - infra/k8s/client-depl.yaml
     - infra/k8s/nats-depl.yaml
     - infra/k8s/ingress-srv.yaml
     

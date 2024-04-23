@@ -1,0 +1,8 @@
+.header {
+  background: url(../../../assets/Hero/Background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 120vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

@@ -1,0 +1,14 @@
+.img {
+  height: 100vh;
+  float: right;
+}
+
+.darkSidebar {
+  flex: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .darkSidebar {
+    display: none;
+  }
+}

@@ -1,0 +1,6 @@
+.sidebar {
+  width: 300px;
+  min-height: 100vh;
+  box-shadow: 3px 0px 3px 0 var(--brand-light-blue);
+  background: var(--brand-light-blue-2);
+}

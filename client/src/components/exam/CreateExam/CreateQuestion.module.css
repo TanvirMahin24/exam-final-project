@@ -1,0 +1,13 @@
+.op {
+  padding-top: 4px;
+  display: grid;
+  grid-template-columns: 40px 1fr 160px;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.correct {
+  color: #00ad1d;
+  font-weight: bold;
+  display: flex;
+}

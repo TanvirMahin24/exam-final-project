@@ -1,0 +1,47 @@
+.hero {
+  display: flex;
+  align-items: center;
+}
+
+.left {
+  padding-left: 9%;
+  width: 75vw !important;
+}
+
+.right {
+  float: right;
+}
+
+.title {
+  font-size: 72px;
+  font-weight: 900;
+}
+
+@media screen and (max-width: 769px) {
+  .left {
+    padding-top: 15%;
+  }
+  .right img {
+    width: 180%;
+    transform: translateX(-90px) translateY(10vh);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .hero {
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+  .left {
+    padding-left: 0;
+    padding-top: 15%;
+  }
+  .left h1 {
+    font-size: 50px !important;
+    line-height: 60px !important;
+  }
+  .right img {
+    width: 100%;
+    transform: translateX(0) translateY(-60px);
+  }
+}

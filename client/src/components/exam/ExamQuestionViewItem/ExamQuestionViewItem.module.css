@@ -1,0 +1,98 @@
+.question_wrapper {
+  border-radius: 20px;
+  background: #fff;
+  padding: 10px 20px;
+  filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.15));
+  margin-bottom: 20px;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 30px 1fr !important;
+  column-gap: 10px !important;
+  align-items: center;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  border: 1px solid var(--secondary);
+}
+
+.op {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.options.selected {
+  border: 1px solid #d6336c !important;
+}
+
+.options.selected:hover {
+  border: 1px solid var(--pink) !important;
+}
+
+.options:hover .op {
+  border: 1px solid var(--pink) !important;
+}
+
+.options.selected .op,
+.options.correct .op,
+.options.unattempt .op {
+  border: 1px solid var(--white) !important;
+  background: var(--pink);
+  color: var(--white);
+}
+.options.incorrect .op {
+  border: 1px solid var(--white) !important;
+  background: var(--secondary-900);
+  color: var(--white);
+}
+
+.options:hover {
+  cursor: pointer;
+  border: 1px solid var(--pink) !important;
+}
+.disabled .options:hover {
+  cursor: unset;
+  border: 1px solid var(--primary-600) !important;
+}
+
+.disabled .options.correct:hover {
+  border: 3px solid var(--primary) !important;
+}
+.disabled .options.incorrect:hover {
+  border: 3px solid var(--secondary-900) !important;
+}
+.disabled .options.unattempt:hover {
+  border: 1px solid var(--secondary-900) !important;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .result {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .result {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
