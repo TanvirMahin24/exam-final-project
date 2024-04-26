@@ -9,6 +9,10 @@ export const getResultDetails = async (req: Request, res: Response) => {
         path: "examId",
         model: "Exam",
       },
+      {
+        path: "userId",
+        model: "User",
+      },
     ]);
 
     return res.status(200).json({ data: result });

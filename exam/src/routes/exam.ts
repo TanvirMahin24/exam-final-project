@@ -11,6 +11,7 @@ import { getExamDetails } from "../controllers/exam/getExamDetails";
 import { submitResult } from "../controllers/exam/submitResult";
 import { getResultDetails } from "../controllers/exam/getResultDetails";
 import { getResults } from "../controllers/exam/getResults";
+import { getResultsofExam } from "../controllers/exam/getResultsofExam";
 const router = express.Router();
 
 router.post(
@@ -43,6 +44,7 @@ router.get("/api/exam/data", isAuth, getData);
 router.get("/api/exam/:id", isAuth, getExamDetails);
 router.get("/api/exam/result/:id", isAuth, getResultDetails);
 router.get("/api/exam/results", isAuth, getResults);
+router.get("/api/exam/results/:id", isAuth, getResultsofExam);
 router.get("/api/exam", isAuth, getCreatedExams);
 router.delete("/api/exam/:id", isAuth, deleteExam);
 

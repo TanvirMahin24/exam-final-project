@@ -39,6 +39,7 @@ router.post(
 
     // If password do not match
     if (!isValidPassword) {
+      console.error("[AUTH] Invalid Credentials!!!");
       throw new BadRequestError("Invalid credentials!");
     }
 

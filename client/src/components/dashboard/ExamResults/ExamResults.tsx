@@ -1,23 +1,29 @@
 import { Loader } from "@mantine/core";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setData, setResults } from "../../../redux/slices/examSlice";
 import { RootState } from "../../../redux/store";
 import ResultCard from "../../shared/ResultCard/ResultCard";
 import { getDashboardAction } from "../../../actions/exam/getDashboard";
+import { getExamResultsAction } from "../../../actions/exam/getExamResults";
+import { ResultType } from "../../../types/Exam";
+import { useParams } from "react-router-dom";
 
-const ResultsCards = () => {
-  const results = useSelector((state: RootState) => state.exam.results);
-  const dispatch = useDispatch();
+const ExamResults = () => {
+  const [results, setResults] = useState<ResultType[] | null>(null);
+  const { id } = useParams();
   useEffect(() => {
     const func = async () => {
-      const res = await getDashboardAction();
-      dispatch(setData(res));
+      if (id) {
+        const res = await getExamResultsAction(id);
+        setResults(res);
+      }
     };
 
     func();
-  }, []);
+  }, [id]);
+
   if (results === null) {
     return <Loader></Loader>;
   } else if (results.length === 0) {
@@ -39,4 +45,4 @@ const ResultsCards = () => {
   );
 };
 
-export default ResultsCards;
+export default ExamResults;

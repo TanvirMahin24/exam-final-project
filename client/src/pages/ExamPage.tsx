@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Spinner } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getExamDetailsAction } from "../actions/exam/getExamDetails";
 import ExamQuestionList from "../components/exam/ExamQuestionList/ExamQuestionList";
@@ -8,10 +8,12 @@ import AnimatedBg from "../components/shared/AnimatedBg/AnimatedBg";
 import { Footer } from "../components/shared/Footer";
 import { Navbar } from "../components/shared/Navbar";
 import { ExamType } from "../types/Exam";
+import { Button } from "@mantine/core";
 
 const ExamPage = () => {
   const [exam, setExam] = useState<ExamType | null>(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const func = async () => {
@@ -42,6 +44,13 @@ const ExamPage = () => {
           <>
             <div className="py-5 d-flex justify-content-center align-items-center">
               <Spinner />
+            </div>
+          </>
+        ) : exam && new Date(exam.end).getTime() < new Date().getTime() ? (
+          <>
+            <div className="py-5 d-flex flex-column justify-content-center align-items-center">
+              <h3>Exam has ended!</h3>
+              <Button onClick={() => navigate(-1)}>Go Back</Button>
             </div>
           </>
         ) : (

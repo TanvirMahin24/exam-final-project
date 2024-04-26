@@ -71,6 +71,7 @@ export const examDemo: ExamType = {
   duration: 60,
   code: "das",
   questionMark: 1,
+  status: "created",
   id: "1",
   questions: [
     demoQuestion1,
@@ -97,6 +98,7 @@ export const examCardDemo: ExamCardType = {
     "This is a test exam description. This is a test exam description. This is a test exam description. This is a test exam description. This is a test exam description.",
   duration: 60,
   id: "1",
+  status: "created",
   totalQuestions: 10,
   start: "2024-04-19T08:22:33.881Z",
   end: "2024-04-19T09:22:33.881Z",

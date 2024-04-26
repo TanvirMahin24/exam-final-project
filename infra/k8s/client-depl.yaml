@@ -15,10 +15,10 @@ spec:
       containers:
         - name: client
           image: tanvirmahin24/exam-react
-          resources:
-            requests:
-              memory: "512Mi"
-              cpu: "500m"
+          # resources:
+          #   requests:
+          #     memory: "512Mi"
+          #     cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
@@ -30,5 +30,10 @@ spec:
   ports:
     - name: client
       protocol: TCP
+      # DEVELOPMENT
       port: 80
-      targetPort: 80
+      targetPort: 3000
+
+      # PRODUCTION
+      # port: 3000
+      # targetPort: 3000

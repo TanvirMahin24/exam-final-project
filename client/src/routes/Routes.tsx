@@ -13,6 +13,7 @@ import {
   SettingsPage,
 } from "../pages";
 import AuthWrapper from "../components/shared/AuthWrapper/AuthWrapper";
+import ExamResultsPage from "../pages/ExamResults";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
   {
     path: "/settings",
     element: <SettingsPage />,
+  },
+  {
+    path: "/exam-results/:id",
+    element: <ExamResultsPage />,
   },
   {
     path: "/exam/:id",

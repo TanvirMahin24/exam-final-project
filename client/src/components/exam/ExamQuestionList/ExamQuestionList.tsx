@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { submitResultAction } from "../../../actions/exam/submitResult";
 import { useNavigate } from "react-router-dom";
 import ExamAnswerViewItem from "../ExamAnswerViewItem/ExamAnswerViewItem";
-
+import Counter from "./Counter";
+import styles from "./ExamQuestionList.module.css";
 interface Props {
   exam: ExamType;
 }
@@ -55,6 +56,14 @@ const ExamQuestionList = ({ exam }: Props) => {
   };
   return (
     <div>
+      <div className={styles.counter}>
+        <Counter
+          duration={
+            (new Date(exam.end).getTime() - new Date().getTime()) / 1000
+          }
+          func={submitHandeler}
+        />
+      </div>
       <h3 className="text-center fw-bold text-white pt-4">{exam.title}</h3>
       <div className="py-4">
         {show
@@ -82,9 +91,15 @@ const ExamQuestionList = ({ exam }: Props) => {
             ))}
 
         <div className="text-center">
-          <Button onClick={submitHandeler} color="pink" size="lg">
-            Sumbit
-          </Button>
+          {show ? (
+            <Button onClick={() => navigate(-1)} color="pink" size="lg">
+              Go Back
+            </Button>
+          ) : (
+            <Button onClick={submitHandeler} color="pink" size="lg">
+              Sumbit
+            </Button>
+          )}
         </div>
       </div>
     </div>

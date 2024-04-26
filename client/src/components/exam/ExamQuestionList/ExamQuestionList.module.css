@@ -1,0 +1,13 @@
+.counter {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  z-index: 100;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  width: 150px;
+  height: 150px;
+}

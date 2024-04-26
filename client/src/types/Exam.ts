@@ -7,6 +7,7 @@ export type ExamCardType = {
   start: string;
   code: string;
   end: string;
+  status: "created" | "resulted";
   totalMark: number;
   duration: number;
   totalQuestions: number;
@@ -24,6 +25,7 @@ export type ExamType = {
   start: string;
   end: string;
   user: UserType;
+  status: "created" | "resulted";
   questions: QuestionType[];
 };
 

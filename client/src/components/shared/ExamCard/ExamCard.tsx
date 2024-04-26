@@ -25,6 +25,7 @@ const ExamCard = ({
   id,
   start,
   code,
+  status,
   disabled = false,
   edit = false,
 }: ExamCardType & Props) => {
@@ -62,22 +63,35 @@ const ExamCard = ({
               </Button>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item
-                leftSection={
-                  <IconEdit style={{ width: rem(14), height: rem(14) }} />
-                }
-                onClick={() => {
-                  if (code && typeof window !== "undefined" && navigator) {
-                    navigator.clipboard.writeText(code);
-                    Swal.fire({
-                      icon: "success",
-                      title: "Code copied to clipboard",
-                    });
+              {status === "resulted" ? (
+                <Menu.Item
+                  leftSection={
+                    <IconEdit style={{ width: rem(14), height: rem(14) }} />
                   }
-                }}
-              >
-                Copy Code
-              </Menu.Item>
+                  onClick={() => {
+                    navigate(`/exam-results/${id}`);
+                  }}
+                >
+                  See Results
+                </Menu.Item>
+              ) : (
+                <Menu.Item
+                  leftSection={
+                    <IconEdit style={{ width: rem(14), height: rem(14) }} />
+                  }
+                  onClick={() => {
+                    if (code && typeof window !== "undefined" && navigator) {
+                      navigator.clipboard.writeText(code);
+                      Swal.fire({
+                        icon: "success",
+                        title: "Code copied to clipboard",
+                      });
+                    }
+                  }}
+                >
+                  Copy Code
+                </Menu.Item>
+              )}
               <Menu.Item
                 color="red"
                 onClick={deleteHandeler}
@@ -109,7 +123,7 @@ const ExamCard = ({
           </Badge>
         </Group>
         {new Date(start).getTime() <= new Date().getTime() &&
-        new Date(end).getTime() < new Date().getTime() ? (
+        new Date(end).getTime() > new Date().getTime() ? (
           <Button
             onClick={() => navigate(`/exam/${id}`)}
             color="blue"

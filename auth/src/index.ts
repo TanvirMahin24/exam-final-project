@@ -42,7 +42,7 @@ const start = async () => {
       console.log("[AUTH] Listening on 5001 ");
     });
   } catch (error) {
-    console.log("[AUTH] DB connection Error!!!!!");
+    console.error("[AUTH] DB connection Error!!!!!");
   }
 };
 

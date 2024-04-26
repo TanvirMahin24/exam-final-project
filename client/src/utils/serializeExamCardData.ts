@@ -11,5 +11,6 @@ export const serializeExamCardData = (exam: ExamType): ExamCardType => {
     totalMark: exam.totalMark,
     totalQuestions: exam.totalQuestions,
     code: exam.code,
+    status: exam.status,
   };
 };
