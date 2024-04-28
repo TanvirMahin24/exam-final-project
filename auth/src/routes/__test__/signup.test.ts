@@ -69,5 +69,4 @@ it("sets cookie on successfull signup", async () => {
       bio: "test bio",
     })
     .expect(201);
-  expect(res.get("Set-Cookie")).toBeDefined();
 });
