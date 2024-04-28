@@ -19,6 +19,14 @@ export const submitResult = async (req: Request, res: Response) => {
     const exam = await Exam.findById(req.params.id);
 
     const user = await User.findById(req.currentUser?.id);
+    const resultCheck = await Result.findOne({
+      examId: exam?._id,
+      userId: user?._id,
+    });
+
+    if (resultCheck) {
+      throw new BadRequestError("Already submitted");
+    }
     if (exam?.end && new Date(exam?.end).getTime() < new Date().getTime()) {
       throw new BadRequestError("Exam has ended");
     } else if (
