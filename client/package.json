@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@mantine/core": "^7.6.2",
+    "@mantine/core": "^7.7.1",
     "@mantine/dates": "^7.6.2",
     "@mantine/form": "^7.6.2",
     "@mantine/hooks": "^7.6.2",
