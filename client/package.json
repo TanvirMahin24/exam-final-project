@@ -7,7 +7,7 @@
     "@mantine/dates": "^7.6.2",
     "@mantine/form": "^7.6.2",
     "@mantine/hooks": "^7.6.2",
-    "@mantine/modals": "^7.6.2",
+    "@mantine/modals": "^7.7.1",
     "@reduxjs/toolkit": "^2.2.1",
     "@tabler/icons-react": "^3.1.0",
     "@testing-library/jest-dom": "^5.17.0",
