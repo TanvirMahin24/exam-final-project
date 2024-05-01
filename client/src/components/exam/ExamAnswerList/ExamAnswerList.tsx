@@ -85,7 +85,7 @@ const ExamAnswerList = ({ result }: Props) => {
           <StatCard
             title="Teacher Name"
             // @ts-ignore
-            count={`${result?.examId?.userId?.name}`}
+            count={`${result?.examId?.user?.name}`}
             icon={<IconSchool size={48} strokeWidth={1} />}
           />
         </Col>
@@ -93,7 +93,7 @@ const ExamAnswerList = ({ result }: Props) => {
           <StatCard
             title="Teacher Email"
             // @ts-ignore
-            count={`${result?.examId?.userId?.email}`}
+            count={`${result?.examId?.user?.email}`}
             icon={<IconMessage2 size={48} strokeWidth={1} />}
           />
         </Col>
@@ -103,7 +103,7 @@ const ExamAnswerList = ({ result }: Props) => {
             // @ts-ignore
             count={
               result?.examId?.start ? (
-                <Moment format="DD/MM/YYYY  HH:mm A">
+                <Moment format="DD/MM/YYYY  hh:mm A">
                   {result?.examId?.start}
                 </Moment>
               ) : (

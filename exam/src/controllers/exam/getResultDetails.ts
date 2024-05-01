@@ -9,7 +9,7 @@ export const getResultDetails = async (req: Request, res: Response) => {
         path: "examId",
         model: "Exam",
         populate: {
-          path: "userId",
+          path: "user",
           model: "User",
         },
       },
