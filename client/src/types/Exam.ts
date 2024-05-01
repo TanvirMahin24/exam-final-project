@@ -46,8 +46,8 @@ export type AnswerType = {
 
 export type ResultType = {
   id: string;
-  examId: string;
-  userId: string;
+  examId: any;
+  userId: any;
   title: string;
   totalMark: number;
   gainedMark: number;
@@ -56,5 +56,6 @@ export type ResultType = {
   totalQuestions: number;
   correct: number;
   wrong: number;
+  exam?: ExamType;
   questions: AnswerType[];
 };

@@ -26,7 +26,7 @@ const CreatedExamCards = () => {
   return (
     <div className="pb-5">
       <div className="d-flex align-items-center pb-2">
-        <h1 className="text-white me-3">Created Exams</h1>
+        <h1 className="text-white me-3">My Exams</h1>
       </div>
       <Row>
         {exams.map((exam) => (

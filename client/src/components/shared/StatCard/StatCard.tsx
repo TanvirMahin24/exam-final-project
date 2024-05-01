@@ -6,7 +6,7 @@ import styles from "./StatCard.module.css";
 interface Props {
   icon: any;
   title: string;
-  count: string;
+  count: any;
 }
 const StatCard = ({ icon, title, count }: Props) => {
   return (

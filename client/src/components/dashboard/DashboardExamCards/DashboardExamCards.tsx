@@ -1,6 +1,5 @@
 import { Col, Row } from "react-bootstrap";
 import ExamCard from "../../shared/ExamCard/ExamCard";
-import { examCardDemo, resultDemo } from "../../../dummyData/exam";
 import { Button } from "@mantine/core";
 import ResultCard from "../../shared/ResultCard/ResultCard";
 import { useNavigate } from "react-router-dom";

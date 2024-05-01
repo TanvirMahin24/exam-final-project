@@ -8,6 +8,10 @@ export const getResultDetails = async (req: Request, res: Response) => {
       {
         path: "examId",
         model: "Exam",
+        populate: {
+          path: "userId",
+          model: "User",
+        },
       },
       {
         path: "userId",
